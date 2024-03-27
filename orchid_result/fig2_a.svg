@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='288.00pt' height='288.00pt' viewBox='0 0 288.00 288.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHwyODguMDB8MC4wMHwyODguMDA='>
+    <rect x='0.00' y='0.00' width='288.00' height='288.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyODguMDA=)'>
+<rect x='0.00' y='0.00' width='288.00' height='288.00' style='stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpNTkuMDJ8MjgyLjUyfDUuNDh8MTkwLjM0'>
+    <rect x='59.02' y='5.48' width='223.50' height='184.86' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpNTkuMDJ8MjgyLjUyfDUuNDh8MTkwLjM0)'>
+<rect x='59.02' y='5.48' width='223.50' height='184.86' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='67.00' y='77.74' width='47.89' height='104.19' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #F0BB62;' />
+<rect x='120.22' y='141.77' width='47.89' height='40.17' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #F0BB62;' />
+<rect x='173.43' y='176.22' width='47.89' height='5.71' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #F0BB62;' />
+<text x='90.95' y='74.09' text-anchor='middle' style='font-size: 11.04px; font-family: "Times New Roman";' textLength='20.22px' lengthAdjust='spacingAndGlyphs'>62%</text>
+<text x='144.16' y='138.12' text-anchor='middle' style='font-size: 11.04px; font-family: "Times New Roman";' textLength='28.49px' lengthAdjust='spacingAndGlyphs'>23.9%</text>
+<text x='197.38' y='172.57' text-anchor='middle' style='font-size: 11.04px; font-family: "Times New Roman";' textLength='22.98px' lengthAdjust='spacingAndGlyphs'>3.4%</text>
+</g>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyODguMDA=)'>
+<polyline points='59.02,190.34 59.02,5.48 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<text x='54.09' y='185.64' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='14.92px' lengthAdjust='spacingAndGlyphs'>0%</text>
+<text x='54.09' y='143.63' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='20.51px' lengthAdjust='spacingAndGlyphs'>25%</text>
+<text x='54.09' y='101.61' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='20.51px' lengthAdjust='spacingAndGlyphs'>50%</text>
+<text x='54.09' y='59.60' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='20.51px' lengthAdjust='spacingAndGlyphs'>75%</text>
+<text x='54.09' y='17.59' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='26.11px' lengthAdjust='spacingAndGlyphs'>100%</text>
+<polyline points='56.28,181.94 59.02,181.94 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='56.28,139.92 59.02,139.92 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='56.28,97.91 59.02,97.91 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='56.28,55.90 59.02,55.90 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='56.28,13.88 59.02,13.88 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='59.02,190.34 282.52,190.34 ' style='stroke-width: 1.07; stroke-linecap: butt;' />
+<polyline points='90.95,193.08 90.95,190.34 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='144.16,193.08 144.16,190.34 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='197.38,193.08 197.38,190.34 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<polyline points='250.59,193.08 250.59,190.34 ' style='stroke-width: 1.07; stroke: #333333; stroke-linecap: butt;' />
+<text transform='translate(96.19,200.51) rotate(-45)' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='47.87px' lengthAdjust='spacingAndGlyphs'>Phylogeny</text>
+<text transform='translate(149.40,200.51) rotate(-45)' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='92.31px' lengthAdjust='spacingAndGlyphs'>Attraction Strategies</text>
+<text transform='translate(202.62,200.51) rotate(-45)' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='35.44px' lengthAdjust='spacingAndGlyphs'>Climate</text>
+<text transform='translate(255.83,200.51) rotate(-45)' text-anchor='end' style='font-size: 11.20px;fill: #4D4D4D; font-family: "Times New Roman";' textLength='85.28px' lengthAdjust='spacingAndGlyphs'>Pollination Vectors</text>
+<text x='170.77' y='279.50' text-anchor='middle' style='font-size: 14.00px; font-family: "Times New Roman";' textLength='38.86px' lengthAdjust='spacingAndGlyphs'>remain</text>
+<text transform='translate(18.05,107.75) rotate(-90)' style='font-size: 14.00px; font-family: "Times New Roman";' textLength='9.34px' lengthAdjust='spacingAndGlyphs'>R</text>
+<text transform='translate(22.22,98.41) rotate(-90)' style='font-size: 9.80px; font-family: "Times New Roman";' textLength='2.72px' lengthAdjust='spacingAndGlyphs'>l</text>
+<text transform='translate(22.22,95.69) rotate(-90)' style='font-size: 9.80px; font-family: "Times New Roman";' textLength='2.72px' lengthAdjust='spacingAndGlyphs'>i</text>
+<text transform='translate(22.22,92.97) rotate(-90)' style='font-size: 9.80px; font-family: "Times New Roman";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>k</text>
+<text transform='translate(12.10,98.41) rotate(-90)' style='font-size: 9.80px; font-family: "Times New Roman";' textLength='4.90px' lengthAdjust='spacingAndGlyphs'>2</text>
+</g>
+</svg>
