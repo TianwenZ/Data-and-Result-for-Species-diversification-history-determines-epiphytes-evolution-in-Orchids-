@@ -4,6 +4,7 @@ library(phytools)
 library(rr2)
 library(tidyverse)
 library(patchwork)
+library(evobiR)
 
 # 读取数据
 traits <- read.csv("orchid_data/orchid_traits.csv") %>%
@@ -81,3 +82,64 @@ df_fullphy <- data.frame(get_r2like(LF_x_PHY_1, LF_x_1, df = 1),
 print(df_fullphy)
 
 write.csv(df_fullphy, "orchid_result/sf_table2_phylo_p_.csv", row.names = FALSE)
+
+
+
+
+#传统系统发育信号值计算
+# 计算5个形状的k值
+terrestrial <- setNames(traits$terrestrial, rownames(traits))
+tropic <- setNames(traits$tropic, rownames(traits))
+subtropic <- setNames(traits$subtropic, rownames(traits))
+temperate <- setNames(traits$temperate, rownames(traits))
+pollination_vectors <- setNames(traits$pollination_vectors, rownames(traits))
+attraction_strategies <- setNames(traits$attraction_strategies, rownames(traits))
+
+# 按照 st_tree$tip.label 的顺序重新排列整个 traits 数据框
+traits_reordered <- traits[match(st_tree$tip.label, rownames(traits)), ]
+terrestrial_K <- phylosig(st_tree, terrestrial, method = "K", test = T, nsim = 999)
+tropic_K <- phylosig(st_tree, tropic, method = "K", test = T, nsim = 999)
+subtropic_K <- phylosig(st_tree, subtropic, method = "K", test = T, nsim = 999)
+temperate_K <- phylosig(st_tree, temperate, method = "K", test = T, nsim = 999)
+pollination_vectors_K <- phylosig(st_tree, pollination_vectors, method = "K", test = T, nsim = 999)
+attraction_strategies_K <- phylosig(st_tree, attraction_strategies, method = "K", test = T, nsim = 999)
+print(terrestrial_K)
+print(tropic_K)
+print(subtropic_K)
+print(temperate_K)
+print(attraction_strategies_K)
+print(pollination_vectors_K)
+
+
+#计算5个性状的Pagel’s λ值
+
+terrestrial_lambda <- phylolm(terrestrial~1,data=traits,phy=st_tree,model="lambda")
+tropic_lambda <- phylolm(tropic~1,data=traits,phy=st_tree,model="lambda")
+subtropic_lambda <- phylolm(subtropic~1,data=traits,phy=st_tree,model="lambda")
+temperate_lambda <- phylolm(temperate~1,data=traits,phy=st_tree,model="lambda")
+pollination_vectors_lambda <- phylolm(pollination_vectors~1,data=traits,phy=st_tree,model="lambda")
+attraction_strategies_lambda <- phylolm(attraction_strategies~1,data=traits,phy=st_tree,model="lambda")
+
+print(terrestrial_lambda)
+print(tropic_lambda)
+print(subtropic_lambda)
+print(temperate_lambda)
+print(attraction_strategies_lambda)
+print(pollination_vectors_lambda)
+
+
+# 计算5个性状的α值
+alphas <- NULL
+all_label <- c("terrestrial", "tropic", "subtropic", "subtropic", "temperate", "pollination_vectors", "attraction_strategies")
+
+for (i in 1:length(all_label)) {
+  f <- paste(all_label[i], "~", "1")
+  model <- phyloglm(f, data = traits_filtered, phy = tree_filtered)
+  alpha <- model$alpha
+  alphas <- c(alphas, alpha)
+}
+
+# 创建结果数据框
+df_alpha <- tibble(name = all_label, alpha = alphas)
+
+
