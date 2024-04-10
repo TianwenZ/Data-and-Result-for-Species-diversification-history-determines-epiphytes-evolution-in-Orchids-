@@ -3,19 +3,13 @@ library(scales)
 library(patchwork)
 library(dplyr)
 
-# 读取数据
-data <- read.csv("orchid_data/orchid_traits_without_deceit.csv")
-data1 <- read.csv("orchid_data/Is_Deceit.csv")
-# 增加是否为欺骗者信息
-data <- left_join(data, data1[, c("species", "attraction_strategies")], by = "species")
-# 将增加了是否为欺骗者信息的数据集导出
-write.csv(data, "orchid_data/orchid_traits.csv", row.names = FALSE)
-
-# 统计信息
+#  Read in data
+data <- read.csv("orchid_data/orchid_traits.csv")
+# data information
 data %>%
     group_by(terrestrial) %>%
     summarise(counts = n())
-# 气候分布区
+# the distribution of the climate region
 (p_climate <- data %>%
   mutate(terrestrial = ifelse(terrestrial == 0, "Epiphytic", "Terrestrial")) %>%
   group_by(terrestrial) %>%
@@ -39,7 +33,7 @@ data %>%
 
 # ggsave("orchid_result/climate_region.png", p_climate, width = 6, height = 4)
 
-# 是否具有传粉媒介
+# the distribution of the pollination vectors
 (p_pollination_vectors <- data %>%
   mutate(terrestrial = ifelse(terrestrial == 0, "Epiphytic", "Terrestrial"),
          pollination_vectors = ifelse(pollination_vectors == 1, "Biotic", "Abiotic")) %>%
@@ -60,13 +54,13 @@ data %>%
 )
 # ggsave("orchid_result/pollination_vectors.png", p_pollination_vectors, width = 6, height = 4)
 
-# 是否为欺骗性传粉
+# the distribution of the attraction strategies
 (p_attraction_strategies <- data %>%
   mutate(terrestrial = ifelse(terrestrial == 0, "Epiphytic", "Terrestrial"),
          attraction_strategies = ifelse(attraction_strategies == 1, "Deception", "Reward")) %>%
   group_by(terrestrial,attraction_strategies) %>%
   summarize(counts = n()) %>%
-  na.omit() %>% #因为这个数据集中有缺失值，所以要去掉
+  na.omit() %>% #rm the NA data
   ggplot(mapping = aes(x = factor(attraction_strategies, levels = c("Deception", "Reward")),
                        y = counts,
                        fill = terrestrial)) +
@@ -82,6 +76,7 @@ data %>%
 )
 # ggsave("orchid_result/attraction_strategies.png", p_attraction_strategies, width = 6, height = 4)
 
+# merge the three plots
 p_merge <- p_climate / p_pollination_vectors / p_attraction_strategies +
   plot_layout(guides = 'collect') +
   plot_annotation(title = "", tag_levels = "A")
