@@ -1,4 +1,4 @@
-library(phylolm) # 注意，这一行需要先在ggtree前载入
+library(phylolm) # Note, this R package needs to be loaded before ggtree
 library(ape)
 library(phytools)
 library(rr2)
@@ -6,7 +6,7 @@ library(tidyverse)
 library(patchwork)
 library(evobiR)
 
-# 读取数据
+# read in data
 traits <- read.csv("orchid_data/orchid_traits.csv") %>%
     column_to_rownames(var = "species")
 # 读取发育树并进行标准化
@@ -17,10 +17,11 @@ st_tree <- function(tree) {
 }
 st_tree <- st_tree(tree)
 
-# 命名检查
+# name check
 geiger::name.check(st_tree, traits)
 
-# 构建模型两两之间的比较，其中LF表示因变量生长形式，CR表示气候分布区，CH表示有无传粉媒介，DR表示是否为欺骗性传粉，1表示截距项
+# construct the models, among them, LF represents the life form, CR represents the climate region, PV indicates represents the pollination vectors,
+                                    # AS represents the (pollinator) attraction strategies, 1 indicates the intercept term
 LF_x_CR_CH_DR_PHY_1 <- phyloglm(terrestrial ~ temperate + subtropic + tropic + pollination_vectors + attraction_strategies + 1,
                                 data = traits, phy = tree)
 
@@ -48,12 +49,13 @@ CR_Tem_x_PHY_1 <- phyloglm(temperate ~  1,
                                 data = traits, phy = tree)
 CR_Tem_x_1 <- glm(temperate ~  1, data = traits, family = "binomial")
 
-# 计算模型的差异
+#  essentially evaluates whether the inclusion of additional factors in mod1 significantly improves its fit to the data compared to mod2
 get_r2like <- function(mod1, mod2, df) {
-  # - mod1: 模型
-  # - mod2: 需要减去的模型
-  # - df: 因子的自由度，这里需要自定判断两个模型之间因子的差异量，例如本文中CR虽然名字只有两个字母，但其实表示了3个气候区
-  # 输出结果是一个包含模型名、减去模型名、对应偏方系数、逻辑似然差值和p值的列表
+  # mod1: The model
+  # mod2: The model to be subtracted
+  # df: Degrees of freedom for the factor, here one needs to independently judge the difference in factors between the two models.
+    #For example, CR, although only two letters long, actually represents three climate regions
+  # The output is a list containing model names, subtracted model name, corresponding partial coefficients, log-likelihood difference, and p-values.
   w <- c(as.character(substitute(mod1)),
          as.character(substitute(mod2)),
          as.character(R2_lik(mod1, mod2)),
@@ -64,7 +66,6 @@ get_r2like <- function(mod1, mod2, df) {
   return(w)
 }
 
-# 输出结果
 df_fullphy <- data.frame(get_r2like(LF_x_PHY_1, LF_x_1, df = 1),
                          get_r2like(PV_x_PHY_1, PV_x_1, df = 1),
                          get_r2like(AS_x_PHY_1, AS_x_1, df = 1),
@@ -86,8 +87,8 @@ write.csv(df_fullphy, "orchid_result/sf_table2_phylo_p_.csv", row.names = FALSE)
 
 
 
-#传统系统发育信号值计算
-# 计算5个形状的k值
+#calculate the k value, Pagel’s λ and alpha values of all traits
+# k value
 terrestrial <- setNames(traits$terrestrial, rownames(traits))
 tropic <- setNames(traits$tropic, rownames(traits))
 subtropic <- setNames(traits$subtropic, rownames(traits))
@@ -95,14 +96,13 @@ temperate <- setNames(traits$temperate, rownames(traits))
 pollination_vectors <- setNames(traits$pollination_vectors, rownames(traits))
 attraction_strategies <- setNames(traits$attraction_strategies, rownames(traits))
 
-# 按照 st_tree$tip.label 的顺序重新排列整个 traits 数据框
-traits_reordered <- traits[match(st_tree$tip.label, rownames(traits)), ]
 terrestrial_K <- phylosig(st_tree, terrestrial, method = "K", test = T, nsim = 999)
 tropic_K <- phylosig(st_tree, tropic, method = "K", test = T, nsim = 999)
 subtropic_K <- phylosig(st_tree, subtropic, method = "K", test = T, nsim = 999)
 temperate_K <- phylosig(st_tree, temperate, method = "K", test = T, nsim = 999)
 pollination_vectors_K <- phylosig(st_tree, pollination_vectors, method = "K", test = T, nsim = 999)
 attraction_strategies_K <- phylosig(st_tree, attraction_strategies, method = "K", test = T, nsim = 999)
+
 print(terrestrial_K)
 print(tropic_K)
 print(subtropic_K)
@@ -111,7 +111,7 @@ print(attraction_strategies_K)
 print(pollination_vectors_K)
 
 
-#计算5个性状的Pagel’s λ值
+# Pagel’s λ
 
 terrestrial_lambda <- phylolm(terrestrial~1,data=traits,phy=st_tree,model="lambda")
 tropic_lambda <- phylolm(tropic~1,data=traits,phy=st_tree,model="lambda")
@@ -128,7 +128,7 @@ print(attraction_strategies_lambda)
 print(pollination_vectors_lambda)
 
 
-# 计算5个性状的α值
+# alpha
 alphas <- NULL
 all_label <- c("terrestrial", "tropic", "subtropic", "subtropic", "temperate", "pollination_vectors", "attraction_strategies")
 
@@ -138,8 +138,6 @@ for (i in 1:length(all_label)) {
   alpha <- model$alpha
   alphas <- c(alphas, alpha)
 }
-
-# 创建结果数据框
 df_alpha <- tibble(name = all_label, alpha = alphas)
 
 
